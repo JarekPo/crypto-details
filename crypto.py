@@ -1,7 +1,8 @@
 
+import requests
+import sys
 from os import system
 from time import sleep
-import requests
 
 coinsList = None
 currency = 'EUR'
@@ -43,10 +44,13 @@ def getCoinsPrice(coinId, currency):
 clear()
 print('\nWelcome to the crypto currency exchange calculator service')
 sleep(1)
-currency = input('\nEnter your local currency symbol (eg. USD): ').upper()
+currency = input('\nEnter your local currency symbol (eg. USD) or press "Q" to exit: ').upper()
+if currency == 'Q':
+    clear()
+    sys.exit("Thank you!q\n")
 
 while True:
-    currencyToBuy = input('\nEnter the required crypto currency symbol or presseur "Q" to exit: ')
+    currencyToBuy = input('\nEnter the required crypto currency symbol or press "Q" to exit: ')
     if currencyToBuy.lower() == 'q':
         break
     
@@ -66,4 +70,4 @@ while True:
     userBudget = float(input('How much money do you want to spend? '))
     userBudgetToCoins = round(userBudget/requiredCoinPrice, 2)
     sleep(1)
-    print('\nFor','\033[92m',userBudget,currency,'\033[0m','you can buy','\033[92m',userBudgetToCoins,currencyToBuy,'\033[0m')
+    print('\nFor', '\033[92m', userBudget, currency, '\033[0m', 'you can buy', '\033[92m', userBudgetToCoins, currencyToBuy, '\033[0m')
